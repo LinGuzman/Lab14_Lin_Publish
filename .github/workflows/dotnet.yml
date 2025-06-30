@@ -1,0 +1,34 @@
+name: Build and Deploy .NET Application
+
+on:
+  push:
+    branches:
+      - main  # Automáticamente se ejecuta cuando se suben cambios a la rama principal
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0.x'  # Usa la última versión compatible de .NET 8
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build application
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Publish application
+        run: dotnet publish --configuration Release --output ./published --no-build
+
+      # 👉 Despliegue (ejemplo opcional)
+      - name: Deploy to server (ejemplo de despliegue)
+        run: |
+          echo "Reemplaza esta línea con tu comando real de despliegue"
+          # scp -r ./published usuario@servidor:/ruta/deploy
