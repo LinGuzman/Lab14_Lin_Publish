@@ -18,5 +18,5 @@ COPY --from=build /app/out .
 EXPOSE 80
 ENV ASPNETCORE_URLS=http://+:80
 
-# Iniciar la app (ajusta el nombre del DLL)
-ENTRYPOINT ["dotnet", "LabS13-GUZMAN.dll"]
+# Iniciar la app
+ENTRYPOINT ["dotnet", "LAB5-LinGuzman.dll"]
